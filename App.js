@@ -4,8 +4,7 @@ import AppContainer from "./src/AppContainer";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start worsking on your app!</Text>
+    <View style={{ flex: 1 }}>
       <StatusBar style="auto" />
       <AppContainer />
     </View>
@@ -18,5 +17,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    width: "100%",
+    height: "100%",
   },
 });

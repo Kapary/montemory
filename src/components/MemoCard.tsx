@@ -1,22 +1,63 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
+import { memoItemProps } from "../types/types";
 
-type Props = {};
+interface MemoCardProps {
+  numberOfCardsInRow: number;
+  numberOfCardsInColumn: number;
+  onTouch?: () => void;
+  item?: memoItemProps;
+}
 
-const MemoCard = (props: Props) => {
-  return <View style={styles.card}>MemoCard</View>;
+const MemoCard = ({
+  numberOfCardsInRow,
+  numberOfCardsInColumn,
+  onTouch,
+  item,
+}: MemoCardProps) => {
+  const cardWidth = 100 / numberOfCardsInRow;
+  // const cardHeight = 100 / numberOfCardsInColumn;
+
+  const styles = StyleSheet.create({
+    card: {
+      // flex: 1,
+      backgroundColor: "blue",
+      alignItems: "center",
+      justifyContent: "center",
+      // paddingBottom: "50%",
+      // flexBasis: "50%",
+      width: `${cardWidth}%`,
+      flex: 1,
+      position: "relative",
+      overflow: "hidden",
+
+      // height: `${cardHeight}%`,
+    },
+    cardInner: {
+      paddingBottom: "100%",
+      backgroundColor: "beige",
+      position: "relative",
+      width: "100%",
+    },
+    cardContent: {
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      left: 0,
+      top: 0,
+    },
+  });
+
+  return (
+    <Pressable onPress={onTouch} style={styles.card}>
+      <div style={styles.cardInner}>
+        <div style={styles.cardContent}>
+          <img src={item.url} style={{ objectFit: "contain" }} />
+          {/* {item.title} */}
+        </div>
+      </div>
+    </Pressable>
+  );
 };
 
 export default MemoCard;
-
-const styles = StyleSheet.create({
-  card: {
-    // flex: 1,
-    backgroundColor: "blue",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-    // flexBasis: "50%",
-    width: 20,
-  },
-});
