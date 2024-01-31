@@ -45,6 +45,7 @@ const MemoCard = ({
       height: "100%",
       left: 0,
       top: 0,
+      objectFit: "cover",
     },
   });
 
@@ -52,7 +53,7 @@ const MemoCard = ({
     <Pressable onPress={onTouch} style={styles.card}>
       <div style={styles.cardInner}>
         <div style={styles.cardContent}>
-          <img src={item.url} style={{ objectFit: "contain" }} />
+          <img src={item.url} style={{ width: "100%", height: "100%" }} />
           {/* {item.title} */}
         </div>
       </div>
