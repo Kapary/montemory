@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import {
   FlatList,
   ScrollView,
@@ -12,6 +12,9 @@ import memoData from "./utils/memoData";
 
 type Props = {};
 
+const ORIENTATION_PORTRAIT = "PORTRAIT";
+const ORIENTATION_LANDSCAPE = "LANDSCAPE";
+
 const AppContainer = (props: Props) => {
   const { height } = Dimensions.get("window");
 
@@ -24,21 +27,40 @@ const AppContainer = (props: Props) => {
   // TODO - make items fit full screen?
   const columnsCount = 6;
 
+  const [orientation, setOrientation] = useState(ORIENTATION_LANDSCAPE);
+
+  const determineAndSetOrientation = () => {
+    let width = Dimensions.get("window").width;
+    let height = Dimensions.get("window").height;
+
+    if (width < height) {
+      setOrientation(ORIENTATION_PORTRAIT);
+    } else {
+      setOrientation(ORIENTATION_LANDSCAPE);
+    }
+  };
+
+  useEffect(() => {
+    determineAndSetOrientation();
+    Dimensions.addEventListener("change", determineAndSetOrientation);
+  }, []);
+
   return (
     <View
       style={styles.cardsContainer}
       // contentContainerStyle={{ flex: 1 }}
     >
       <FlatList
+        key={orientation}
         contentContainerStyle={{
           flex: 1,
-          alignItems: "stretch",
+          // alignItems: "stretch",
           // height,
           justifyContent: "space-between",
-          rowGap: 16,
+          // rowGap: 16,
         }}
         style={{ flex: 1, rowGap: 16 }}
-        numColumns={columnsCount}
+        numColumns={orientation === ORIENTATION_LANDSCAPE ? columnsCount : 4}
         data={shuffledMemoData}
         columnWrapperStyle={{ justifyContent: "space-between", gap: 16 }}
         renderItem={(memo) => (

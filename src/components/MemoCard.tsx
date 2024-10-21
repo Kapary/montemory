@@ -15,7 +15,7 @@ const MemoCard = ({
   onTouch,
   item,
 }: MemoCardProps) => {
-  const cardWidth = 100 / numberOfCardsInRow;
+  const cardWidth = Math.floor(100 / numberOfCardsInRow);
   // const cardHeight = 100 / numberOfCardsInColumn;
 
   const styles = StyleSheet.create({
