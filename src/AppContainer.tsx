@@ -67,7 +67,7 @@ const AppContainer = (props: Props) => {
           <MemoCard
             numberOfCardsInColumn={columnsCount}
             numberOfCardsInRow={shuffledMemoData.length / columnsCount}
-            onTouch={() => console.log("touched")}
+            onTouch={() => console.log("touched", memo.item.value)}
             item={memo.item}
           />
         )}

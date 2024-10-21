@@ -50,7 +50,7 @@ const MemoCard = ({
   });
 
   return (
-    <Pressable onPress={onTouch} style={styles.card}>
+    <Pressable onPress={onTouch} style={styles.card} disabled>
       <div style={styles.cardInner}>
         <div style={styles.cardContent}>
           <img src={item.url} style={{ width: "100%", height: "100%" }} />
