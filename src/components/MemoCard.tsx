@@ -1,5 +1,5 @@
 import React from "react";
-import { Pressable, StyleSheet } from "react-native";
+import { Pressable, StyleSheet, View, Image } from "react-native";
 import { memoItemProps } from "../types/types";
 
 interface MemoCardProps {
@@ -51,12 +51,12 @@ const MemoCard = ({
 
   return (
     <Pressable onPress={onTouch} style={styles.card} disabled>
-      <div style={styles.cardInner}>
-        <div style={styles.cardContent}>
-          <img src={item.url} style={{ width: "100%", height: "100%" }} />
-          {/* {item.title} */}
-        </div>
-      </div>
+      <View style={styles.cardInner}>
+        <Image src={item.url} style={{ width: "100%", height: "100%" }} />
+        {/* <View style={styles.cardContent}> */}
+        {/* {item.title} */}
+        {/* </View> */}
+      </View>
     </Pressable>
   );
 };
